@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3848252654372033501}
   - component: {fileID: 6085540268988502021}
   - component: {fileID: 8668749230858553986}
+  - component: {fileID: 5274018435141141304}
   m_Layer: 0
   m_Name: Yakitori_Slot
   m_TagString: Untagged
@@ -102,6 +103,18 @@ MonoBehaviour:
   m_SocketScaleMode: 0
   m_FixedScale: {x: 1, y: 1, z: 1}
   m_TargetBoundsSize: {x: 1, y: 1, z: 1}
+--- !u!114 &5274018435141141304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164282915619180941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b9aaf93d36511b4fac985457c320862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YakitoriSlotHandler
 --- !u!1 &6038527602733190698
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,6 +234,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &9135830243307369899
 GameObject:
@@ -238,6 +252,7 @@ GameObject:
   - component: {fileID: -1490138944403897091}
   - component: {fileID: 3133429251609135041}
   - component: {fileID: 1036459438947252761}
+  - component: {fileID: 3447935395407379058}
   m_Layer: 0
   m_Name: Skewer Stick
   m_TagString: Untagged
@@ -318,6 +333,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &5333151414001759559
 BoxCollider:
@@ -550,3 +566,18 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &3447935395407379058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9135830243307369899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db126c29d886ffe44a1d38f7f88d327f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkewerStickSocket
+  yakitoriSlot: {fileID: 3848252654372033501}
+  socketInteractor: {fileID: 8668749230858553986}
+  skewerWithMeatVariant: {fileID: 2442541881250417441, guid: ec1596f5b6cca814f87948ba24e60eec, type: 3}
