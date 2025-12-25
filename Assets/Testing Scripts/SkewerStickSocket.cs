@@ -16,15 +16,12 @@ public class SkewerStickSocket : MonoBehaviour
     [SerializeField] private GameObject skewerWithMeatVariant; // The "Skewer with meat Variant" prefab
 
     private MeatballAttachable attachedMeatball;
+
     [Header("State")]
     [SerializeField] private bool hasMeatball = false;
 
     void Start()
     {
-        // Debug.Log($"[SkewerStickSocket] Starting initialization...");
-        // Debug.Log($"[SkewerStickSocket] yakitoriSlot assigned: {yakitoriSlot != null}");
-        // Debug.Log($"[SkewerStickSocket] socketInteractor assigned: {socketInteractor != null}");
-
         // Get the socket interactor if not assigned
         if (socketInteractor == null && yakitoriSlot != null)
         {
@@ -35,7 +32,6 @@ public class SkewerStickSocket : MonoBehaviour
 
         if (socketInteractor != null)
         {
-            // Debug.Log("[SkewerStickSocket] XRSocketInteractor found! Subscribing to events.");
             // Subscribe to socket interactor events
             socketInteractor.selectEntered.AddListener(OnMeatballInserted);
             socketInteractor.selectExited.AddListener(OnMeatballRemoved);

@@ -107,7 +107,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5215092905109783940
 Transform:
   m_ObjectHideFlags: 0
@@ -324,10 +324,12 @@ MonoBehaviour:
   liquidRender: {fileID: 8302351699692051728}
   liquidMaterial: {fileID: 2100000, guid: 8dec526bbd84d684da6f40f79c3ab1bd, type: 2}
   cap: {fileID: 3008207622257632114}
-  isOpen: 0
+  isOpen: 1
   inertness: 50
   liquidColor: {r: 0.36, g: 0.6, b: 0.12, a: 0.28627452}
   fillAmountPercent: 1
+  minFillAmount: 0.1
+  maxFillAmount: 0.99
   customVolume: 0
 --- !u!136 &8720022172191244280
 CapsuleCollider:

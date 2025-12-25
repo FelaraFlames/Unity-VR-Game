@@ -4,10 +4,8 @@ using UnityEngine;
 
 namespace UnitySimpleLiquid
 {
-    /// <summary>
-    /// Container with defined volume and liquid amount
-    /// Also controls liquid rendering (color, surface level, wobble effect)
-    /// </summary>
+    // Container with defined volume and liquid amount
+    // Also controls liquid rendering (color, surface level, wobble effect)
     [ExecuteInEditMode]
     public class LiquidContainer : MonoBehaviour
     {
@@ -35,6 +33,10 @@ namespace UnitySimpleLiquid
         [Range(0f, 1f)]
         [SerializeField]
         private float fillAmountPercent = 0.5f;
+        
+        [Header("Fill Clamps")]
+        [SerializeField] private float minFillAmount = 0.1f;
+        [SerializeField] private float maxFillAmount = 0.99f;
 
         [Header("Container Volume")]
         [SerializeField]
@@ -54,8 +56,6 @@ namespace UnitySimpleLiquid
 
         #region Liquid Amount
         // After this values shader might become unstable
-        private const float minFillAmount = 0.1f;
-        private const float maxFillAmount = 0.99f;
 
         public bool IsOpen
         {
@@ -71,9 +71,7 @@ namespace UnitySimpleLiquid
             }
         }
 
-        /// <summary>
-        /// Amount of liquid in percents [0,1]
-        /// </summary>
+        // Amount of liquid in percents [0,1]
         public float FillAmountPercent
         {
             get
@@ -90,9 +88,7 @@ namespace UnitySimpleLiquid
             }
         }
 
-        /// <summary>
-        /// Amount of liquid in liters
-        /// </summary>
+        // Amount of liquid in liters
         public float FillAmount
         {
             get
@@ -106,9 +102,7 @@ namespace UnitySimpleLiquid
             }
         }
 
-        /// <summary>
-		/// Container volume in liters
-		/// </summary>
+		// Container volume in liters
         public float Volume
 		{
             get
@@ -121,9 +115,7 @@ namespace UnitySimpleLiquid
 			}
 		}
 
-		/// <summary>
-		/// Volume is fixed and not calculated automatically
-		/// </summary>
+		// Volume is fixed and not calculated automatically
 		public bool CustomVolume
 		{
             get
@@ -132,9 +124,7 @@ namespace UnitySimpleLiquid
 			}
 		}
 
-		/// <summary>
-		/// Need to map fill amount for more stable results
-		/// </summary>
+		// Need to map fill amount for more stable results
 		private float MappedFillAmount
         {
             get
@@ -143,10 +133,8 @@ namespace UnitySimpleLiquid
             }
         }
 
-        /// <summary>
-        /// Calculate container volume based on mesh bounds and transform size 
-        /// </summary>
-        /// <returns>Container volume in liters</returns>
+        // Calculate container volume based on mesh bounds and transform size
+        // Container volume in liters
         public float CalculateVolume()
         {
             var mesh = LiquidMesh;
@@ -162,9 +150,7 @@ namespace UnitySimpleLiquid
 
         #region Liquid Surface
         private Vector3 surfaceLevel;
-        /// <summary>
-        ///  Surface level of liquid in world-space coordinates
-        /// </summary>
+        //  Surface level of liquid in world-space coordinates
         public Vector3 SurfaceLevel
         {
             get
@@ -206,10 +192,7 @@ namespace UnitySimpleLiquid
             return center;
         }
 
-        /// <summary>
-        /// Generate surface plane in world-space coordinates
-        /// </summary>
-        /// <returns></returns>
+        // Generate surface plane in world-space coordinates
         public Plane GenerateSurfacePlane()
         {
             return new Plane(-gravityDirection,
@@ -220,9 +203,7 @@ namespace UnitySimpleLiquid
         #region Gravity
 
         private Vector3 gravityDirection = Vector3.down;
-        /// <summary>
-        /// Direction which liquid trying to align to
-        /// </summary>
+        // Direction which liquid trying to align to
         public Vector3 GravityDirection
         {
             get
@@ -245,9 +226,7 @@ namespace UnitySimpleLiquid
 
         private Material materialInstance;
 
-        /// <summary>
-        /// Unique instance of liqud material bounded with mesh render
-        /// </summary>
+        // Unique instance of liqud material bounded with mesh render
         public Material MaterialInstance
         {
             get
@@ -272,9 +251,7 @@ namespace UnitySimpleLiquid
             }
         }
 
-        /// <summary>
-        /// Shared mesh that represent liquids
-        /// </summary>
+        // Shared mesh that represent liquids
         public Mesh LiquidMesh
         {
             get
@@ -285,9 +262,7 @@ namespace UnitySimpleLiquid
             }
         }
 
-        /// <summary>
-        /// Transparent color of the liquid
-        /// </summary>
+        // Transparent color of the liquid
         public Color LiquidColor
         {
             get

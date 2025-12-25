@@ -56,6 +56,8 @@ MonoBehaviour:
   inertness: 50
   liquidColor: {r: 0.09411765, g: 0.36862746, b: 0.13333334, a: 0.28627452}
   fillAmountPercent: 0.653
+  minFillAmount: 0.1
+  maxFillAmount: 0.99
   customVolume: 0
 --- !u!136 &1849351744
 CapsuleCollider:
