@@ -34,6 +34,9 @@ public class Customer : MonoBehaviour
     /// </summary>
     public Transform despawnPoint;
 
+    [Header("Animation & Movement")]
+    public Animator animator;
+
     private NavMeshAgent agent;
     private bool orderComplete = false;
 
@@ -68,6 +71,8 @@ public class Customer : MonoBehaviour
         {
             orderUIPanel.SetActive(false);
         }
+
+        animator.SetBool("IsWalking", true);
     }
 
     /// <summary>
@@ -76,6 +81,8 @@ public class Customer : MonoBehaviour
     /// </summary>
     public void ArriveAtCounter()
     {
+        animator.SetBool("IsWalking", false);
+        
         if (orderComplete)
         {
             Debug.LogWarning("Customer has already completed their order!");
@@ -97,7 +104,7 @@ public class Customer : MonoBehaviour
     private void GenerateRandomOrder()
     {
         skewersNeeded = Random.Range(1, 4); // Random 1 to 3
-        teaNeeded = Random.Range(1, 3);     // Random 1 to 2
+        teaNeeded = Random.Range(0, 3);     // Random 0 to 2
         
         skewersGiven = 0;
         teaGiven = 0;
@@ -169,6 +176,8 @@ public class Customer : MonoBehaviour
     /// </summary>
     private void LeaveCounter()
     {
+        animator.SetBool("IsWalking", true);
+        
         // Disable the order UI panel
         if (orderUIPanel != null)
         {

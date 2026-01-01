@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: -5618123396684944984}
   - component: {fileID: -2281701587981472114}
   - component: {fileID: -268051230966678524}
+  - component: {fileID: 1617539423089540066}
   m_Layer: 0
   m_Name: Tea Cup
   m_TagString: Untagged
@@ -388,6 +389,19 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &1617539423089540066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5185389706047701919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ada7a9c0d5f7ac4c9728d0b4cee3999, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemIdentity
+  type: 3
 --- !u!1 &5222405182016459952
 GameObject:
   m_ObjectHideFlags: 0

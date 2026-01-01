@@ -227,6 +227,8 @@ public class YakitoriSkewer : MonoBehaviour
         if (side2Mesh != null) side2Mesh.SetActive(false);
         if (cookedMesh != null) cookedMesh.SetActive(true);
         if (burnedMesh != null) burnedMesh.SetActive(false);
+
+        GetComponent<ItemIdentity>().SetItemAsCooked();
         
         Debug.Log("Skewer is perfectly cooked!");
     }
