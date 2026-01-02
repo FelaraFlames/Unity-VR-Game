@@ -20,6 +20,9 @@ namespace UnitySimpleLiquid
         [SerializeField]
         private GameObject cap;
         [SerializeField]
+        [Tooltip("Cap Slot GameObject that will be enabled when fill amount >= 0.85")]
+        private GameObject capSlot;
+        [SerializeField]
         [Tooltip("Is container open and can split?")]
         private bool isOpen = true;
 
@@ -52,6 +55,9 @@ namespace UnitySimpleLiquid
         private void Start()
         {
             splitController = GetComponent<SplitController>();
+            
+            // Initialize cap slot visibility based on current fill amount
+            UpdateCapSlotVisibility();
         }
 
         #region Liquid Amount
@@ -85,6 +91,7 @@ namespace UnitySimpleLiquid
                 else
                     fillAmountPercent = 0f;
                 UpdateSurfacePos();
+                UpdateCapSlotVisibility();
             }
         }
 
@@ -342,7 +349,23 @@ namespace UnitySimpleLiquid
                 volume = CalculateVolume();
 
             if (Application.isPlaying)
+            {
                 UpdateWoble();
+                UpdateCapSlotVisibility();
+            }
+        }
+        
+        // Enable/disable Cap Slot based on fill amount (must be >= 0.85)
+        private void UpdateCapSlotVisibility()
+        {
+            if (capSlot != null)
+            {
+                bool shouldBeEnabled = fillAmountPercent >= 0.85f;
+                if (capSlot.activeSelf != shouldBeEnabled)
+                {
+                    capSlot.SetActive(shouldBeEnabled);
+                }
+            }
         }
 
         private void OnValidate()

@@ -1,11 +1,9 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-/// <summary>
-/// Handles skewer stick attachment logic with meatball integration.
-/// This script should be attached to the Skewer Stick GameObject.
-/// It manages the XR Socket Interactor and prefab variant swapping.
-/// </summary>
+// Handles skewer stick attachment logic with meatball integration.
+// This script should be attached to the Skewer Stick GameObject.
+// It manages the XR Socket Interactor and prefab variant swapping.
 public class SkewerStickSocket : MonoBehaviour
 {
     [Header("Slot References")]
@@ -51,9 +49,7 @@ public class SkewerStickSocket : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Called when a meatball enters the socket interactor
-    /// </summary>
+    // Called when a meatball enters the socket interactor
     private void OnMeatballInserted(SelectEnterEventArgs args)
     {
         MeatballAttachable meatball = args.interactableObject.transform.GetComponent<MeatballAttachable>();
@@ -64,23 +60,14 @@ public class SkewerStickSocket : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Called when a meatball is removed from the socket (either by dropping or other action)
-    /// </summary>
+    // Called when a meatball is removed from the socket (either by dropping or other action)
     private void OnMeatballRemoved(SelectExitEventArgs args)
     {
         MeatballAttachable meatball = args.interactableObject.transform.GetComponent<MeatballAttachable>();
-        
-        if (meatball != null && !meatball.IsAttachedToSkewer())
-        {
-            // Debug.Log("Meatball removed from socket preview!");
-        }
     }
 
-    /// <summary>
-    /// Attach the meatball to the skewer and transform the prefab variant
-    /// Call this when the player releases the meatball while it's in the socket
-    /// </summary>
+    // Attach the meatball to the skewer and transform the prefab variant
+    // Call this when the player releases the meatball while it's in the socket
     public void AttachMeatballToSkewer(MeatballAttachable meatball)
     {
         if (hasMeatball)
@@ -109,12 +96,9 @@ public class SkewerStickSocket : MonoBehaviour
         Debug.Log("Meatball successfully attached to skewer!");
     }
 
-    /// <summary>
-    /// Swap the current skewer prefab to the "Skewer with meat Variant"
-    /// </summary>
+    // Swap the current skewer prefab to the "Skewer with meat Variant"
     private void SwapToMeatVariant()
     {
-        Debug.Log("[SwapToMeatVariant] Starting swap...");
         Debug.Log($"[SwapToMeatVariant] skewerWithMeatVariant is: {skewerWithMeatVariant}");
         
         if (skewerWithMeatVariant == null)
@@ -177,13 +161,9 @@ public class SkewerStickSocket : MonoBehaviour
         Debug.Log("[SwapToMeatVariant] Swap complete!");
     }
 
-    /// <summary>
-    /// Check if the skewer has a meatball attached
-    /// </summary>
+    // Check if the skewer has a meatball attached
     public bool HasMeatball() => hasMeatball;
 
-    /// <summary>
-    /// Get the attached meatball (if any)
-    /// </summary>
+    // Get the attached meatball (if any)
     public MeatballAttachable GetAttachedMeatball() => attachedMeatball;
 }

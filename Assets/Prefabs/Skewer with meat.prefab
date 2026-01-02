@@ -316,7 +316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Outline
   outlineMode: 0
   outlineColor: {r: 0.5225, g: 0.95, b: 0.87874997, a: 1}
-  outlineWidth: 2
+  outlineWidth: 5
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
