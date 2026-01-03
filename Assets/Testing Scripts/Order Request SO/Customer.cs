@@ -11,27 +11,19 @@ public class Customer : MonoBehaviour
     public int teaGiven;
 
     [Header("UI Reference")]
-    /// <summary>
-    /// The world space UI panel containing the order display.
-    /// Will be enabled at counter and disabled when order is complete.
-    /// </summary>
+    // The world space UI panel containing the order display.
+    // Will be enabled at counter and disabled when order is complete.
     public GameObject orderUIPanel;
     public TextMeshProUGUI orderText;
 
     [Header("Navigation Points")]
-    /// <summary>
-    /// The spawn point where the customer prefab is instantiated.
-    /// </summary>
+    // The spawn point where the customer prefab is instantiated.
     public Transform spawnPoint;
     
-    /// <summary>
-    /// The counter location where orders are displayed and food is delivered.
-    /// </summary>
+    // The counter location where orders are displayed and food is delivered.
     public Transform counterLocation;
     
-    /// <summary>
-    /// The despawn point where the customer walks after order completion.
-    /// </summary>
+    // The despawn point where the customer walks after order completion.
     public Transform despawnPoint;
 
     [Header("Animation & Movement")]
@@ -75,10 +67,8 @@ public class Customer : MonoBehaviour
         animator.SetBool("IsWalking", true);
     }
 
-    /// <summary>
-    /// Called when the customer arrives at the counter.
-    /// Generates a random order and enables the UI.
-    /// </summary>
+    // Called when the customer arrives at the counter.
+    // Generates a random order and enables the UI.
     public void ArriveAtCounter()
     {
         animator.SetBool("IsWalking", false);
@@ -98,13 +88,12 @@ public class Customer : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Generates a randomized order for the customer.
-    /// </summary>
+    #region Order Management
+    // Generates a randomized order for the customer.
     private void GenerateRandomOrder()
     {
-        skewersNeeded = Random.Range(1, 4); // Random 1 to 3
-        teaNeeded = Random.Range(0, 3);     // Random 0 to 2
+        skewersNeeded = Random.Range(2, 4); // Random 2 to 3
+        teaNeeded = Random.Range(1, 3);     // Random 1 to 2
         
         skewersGiven = 0;
         teaGiven = 0;
@@ -112,11 +101,10 @@ public class Customer : MonoBehaviour
         UpdateOrderUI();
         Debug.Log($"Customer order generated: {skewersNeeded} skewers, {teaNeeded} tea");
     }
+    #endregion
 
-    /// <summary>
-    /// Called by ServingZone when food is delivered to this customer.
-    /// Only accepts CookedSkewer and Tea items.
-    /// </summary>
+    // Called by ServingZone when food is delivered to this customer.
+    // Only accepts CookedSkewer and Tea items.
     public void ReceiveFood(Order_ItemType itemType)
     {
         if (orderComplete)
@@ -147,9 +135,7 @@ public class Customer : MonoBehaviour
         CheckIfSatisfied();
     }
 
-    /// <summary>
-    /// Updates the UI text to show current order progress.
-    /// </summary>
+    // Updates the UI text to show current order progress.
     private void UpdateOrderUI()
     {
         if (orderText != null)
@@ -158,9 +144,7 @@ public class Customer : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Checks if the customer's order is satisfied and triggers departure.
-    /// </summary>
+    // Checks if the customer's order is satisfied and triggers departure.
     private void CheckIfSatisfied()
     {
         if (skewersGiven >= skewersNeeded && teaGiven >= teaNeeded)
@@ -171,11 +155,10 @@ public class Customer : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Initiates the customer's departure: hides UI and walks to despawn point.
-    /// </summary>
+    // Initiates the customer's departure: hides UI and walks to despawn point.
     private void LeaveCounter()
     {
+        agent.updateRotation = true;
         animator.SetBool("IsWalking", true);
         
         // Disable the order UI panel

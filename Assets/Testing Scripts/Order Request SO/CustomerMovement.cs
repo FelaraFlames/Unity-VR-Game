@@ -3,25 +3,20 @@ using UnityEngine.AI;
 
 public class CustomerMovement : MonoBehaviour
 {
-    /// <summary>
-    /// The NavMeshAgent component for pathfinding.
-    /// </summary>
+    // The NavMeshAgent component for pathfinding.
     [SerializeField] private NavMeshAgent agent;
     
-    /// <summary>
-    /// The counter location where the customer will place their order.
-    /// </summary>
+    // The counter location where the customer will place their order.
     [SerializeField] private Transform counterLocation;
     
-    /// <summary>
-    /// Reference to the Customer component on this GameObject.
-    /// </summary>
+    // Reference to the Customer component on this GameObject.
     [SerializeField] private Customer customer;
     
-    /// <summary>
-    /// The distance threshold to consider the counter "reached".
-    /// </summary>
+    // The distance threshold to consider the counter "reached".
+    [SerializeField] private float counterArrivalThreshold = 0.5f;
     [SerializeField] private float arrivalThreshold = 0.5f;
+
+    [SerializeField] private float rotationSpeed = 5f;
 
     private bool hasArrivedAtCounter = false;
 
@@ -73,6 +68,8 @@ public class CustomerMovement : MonoBehaviour
                 if (customer != null)
                 {
                     customer.ArriveAtCounter();
+                    agent.updateRotation = false; // Disable automatic rotation
+                    FaceTarget(counterLocation.position);
                 }
                 
                 // Notify the serving zone that a customer is now available
@@ -81,9 +78,7 @@ public class CustomerMovement : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Finds and registers this customer with the serving zone.
-    /// </summary>
+    // Finds and registers this customer with the serving zone.
     private void RegisterWithServingZone()
     {
         ServingZone servingZone = FindObjectOfType<ServingZone>();
@@ -96,5 +91,15 @@ public class CustomerMovement : MonoBehaviour
 
         servingZone.SetCurrentCustomer(customer);
         Debug.Log("Customer registered with serving zone.");
+    }
+
+    void FaceTarget(Vector3 destination)
+    {
+        Vector3 direction = (destination - transform.position).normalized;
+        // Keep the rotation in the XZ plane (ignore Y component for a flat rotation)
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        
+        // Smoothly rotate the agent towards the target rotation
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
     }
 }

@@ -18,6 +18,9 @@ public class YakitoriSkewer : MonoBehaviour
     [Header("Collider References")]
     [SerializeField] private Collider side1Collider; // Collider for side 1
     [SerializeField] private Collider side2Collider; // Collider for side 2
+
+    [Header("Audio Reference")]
+    [SerializeField] private AudioSource cookingSound;
     
     // Cooking progress for each side (0 = raw, 1 = fully cooked/burned)
     private float side1Progress = 0f;
@@ -148,6 +151,7 @@ public class YakitoriSkewer : MonoBehaviour
         if (currentProgress >= targetCookProgress && !isBurned)
         {
             Debug.Log($"Side {sideNumber} reached target cook progress!");
+            cookingSound.Play();
             CheckIfFullyCooked();
         }
         

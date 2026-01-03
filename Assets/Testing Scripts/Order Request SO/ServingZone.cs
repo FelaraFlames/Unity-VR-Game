@@ -2,15 +2,13 @@ using UnityEngine;
 
 public class ServingZone : MonoBehaviour
 {
-    /// <summary>
-    /// The current customer at the counter waiting for their order.
-    /// </summary>
+    // The current customer at the counter waiting for their order.
     private Customer currentCustomer;
 
-    /// <summary>
-    /// Sets the current customer at this serving zone.
-    /// Called by CustomerMovement when a customer arrives at the counter.
-    /// </summary>
+    [SerializeField] private AudioSource serveSound;
+
+    // Sets the current customer at this serving zone.
+    // Called by CustomerMovement when a customer arrives at the counter.
     public void SetCurrentCustomer(Customer customer)
     {
         if (customer == null)
@@ -23,9 +21,7 @@ public class ServingZone : MonoBehaviour
         Debug.Log($"ServingZone: Customer {customer.gameObject.name} is now being served.");
     }
 
-    /// <summary>
-    /// Clears the current customer (called when they leave).
-    /// </summary>
+    // Clears the current customer (called when they leave).
     public void ClearCurrentCustomer()
     {
         if (currentCustomer != null)
@@ -35,10 +31,8 @@ public class ServingZone : MonoBehaviour
         currentCustomer = null;
     }
 
-    /// <summary>
-    /// Called when a food item enters the serving zone trigger.
-    /// Validates the item and delivers it to the current customer.
-    /// </summary>
+    // Called when a food item enters the serving zone trigger.
+    // Validates the item and delivers it to the current customer.
     private void OnTriggerEnter(Collider other)
     {
         // 1. Check if we have a customer to serve
@@ -66,6 +60,7 @@ public class ServingZone : MonoBehaviour
 
         // 4. Deliver the food to the customer
         currentCustomer.ReceiveFood(item.type);
+        serveSound.Play();
         Debug.Log($"ServingZone: Delivered {item.type} to customer");
 
         // 5. Destroy the food object to clean up the counter
