@@ -8,10 +8,12 @@
   <Project Path="Unity.XR.Interaction.Toolkit.Samples.SpatialKeyboard.csproj" />
   <Project Path="EPOUtilities.csproj" />
   <Project Path="EPOEditor.csproj" />
+  <Project Path="Unity.XR.Interaction.Toolkit.Samples.WorldSpaceUI.csproj" />
   <Project Path="Unity.XR.Interaction.Toolkit.Samples.InteractionSimulator.Editor.csproj" />
   <Project Path="Unity.XR.Interaction.Toolkit.Samples.Hands.Editor.csproj" />
   <Project Path="Unity.XR.Hands.Samples.VisualizerSample.csproj" />
   <Project Path="Unity.XR.Interaction.Toolkit.Samples.Hands.csproj" />
+  <Project Path="Unity.XR.Interaction.Toolkit.Samples.WorldSpaceUI.Editor.csproj" />
   <Project Path="EPOURP.csproj" />
   <Project Path="Unity.XR.Interaction.Toolkit.Samples.StarterAssets.Editor.csproj" />
   <Project Path="EPOHDRP.csproj" />
