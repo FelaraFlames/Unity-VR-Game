@@ -41,6 +41,9 @@ extern void MeatballAttachable_OnReleased_m59BE8F12EE2B1A0255B07FF6594941AA2BC2D
 extern void MeatballAttachable_AttachToSkewer_m0F59758904107DBAB69E9AE15363BED4472AE938 (void);
 extern void MeatballAttachable_IsAttachedToSkewer_m5B99AEAEA08E45FDBB956E4F5EF3AF24A421147A (void);
 extern void MeatballAttachable__ctor_m48897C160FB6B202A855FEA9CF396472F215E562 (void);
+extern void Customer_get_CustomerOnScene_m29EBB9FB0DAA63D4B2AF8750EC393AC135324879 (void);
+extern void Customer_set_CustomerOnScene_m7D9EC334712D8721350697F95BA898C66257EAF6 (void);
+extern void Customer_Awake_m204325F4CEC9EF62DA01EF932EC88B6587CEC44C (void);
 extern void Customer_Start_m1BE1C72CF993A76B1A2811D4CECC8CD51D3DC133 (void);
 extern void Customer_ArriveAtCounter_mE59594E460D461E95D21C56E9034ACE76CC93047 (void);
 extern void Customer_GenerateRandomOrder_m1D3196DD8AB837B54A78869B4D3CDD4B60D97B05 (void);
@@ -48,10 +51,12 @@ extern void Customer_ReceiveFood_m040137736231952C3C33C4973793AB813661FF00 (void
 extern void Customer_UpdateOrderUI_mC531A8E592EB385115D364C059DBF07CBCC9FCED (void);
 extern void Customer_CheckIfSatisfied_m2AAB15E81B11F3171DD8BE7D8678A7C6365BF84F (void);
 extern void Customer_LeaveCounter_m3E4D9C5C88B6C4C8AD9349623069A91762F16B98 (void);
+extern void Customer_OnReachedDespawn_mE43C4700EBB5DA4EEAB8909B62F8761AEB9ABC6F (void);
 extern void Customer__ctor_m7BC9A866BB65665A89BFBA768C11B783E462BD01 (void);
 extern void CustomerMovement_Start_m999D771474F0568B0A7C9F14FA3B424BBAB81BDD (void);
 extern void CustomerMovement_Update_m3049519B6297D030D8A21406534B2965BD9E387D (void);
 extern void CustomerMovement_RegisterWithServingZone_m45EC7628001771C24B1128B99BF56CFBE470EBDC (void);
+extern void CustomerMovement_OnStartGoingToDespawn_mF7039E7A3981036110C944E61A27D150466E36DC (void);
 extern void CustomerMovement_FaceTarget_mA0DEA5E8A05A4A244F79500BF5FCFCB967BE403E (void);
 extern void CustomerMovement__ctor_m51C6AA8DDDA7AA22BC58D5AF9B7F91529DA3F553 (void);
 extern void ItemIdentity_SetItemAsCooked_m940E89797138AE3B57B9CA2597AF1C8FBA497DF4 (void);
@@ -341,7 +346,7 @@ extern void LiquidDispenser_MixLiquidColor_mF72CF4A5263B8043667728D3079B8C3E8DB2
 extern void LiquidDispenser_OnParticleCollision_mE10D2718C7B3563A1A50D6A31192A428B57B41C3 (void);
 extern void LiquidDispenser_OnDrawGizmosSelected_m381A71703B4448077D5B3BA5FBBDE7D087C6C81F (void);
 extern void LiquidDispenser__ctor_mB3E696155B296B5597BD9325F4B631952DE57769 (void);
-static Il2CppMethodPointer s_methodPointers[334] = 
+static Il2CppMethodPointer s_methodPointers[339] = 
 {
 	Outline_get_OutlineMode_m407E90C88C66DA2B6155740D4FB9142C355A491B,
 	Outline_set_OutlineMode_m82C5D0413E7460037A2A2BF8FB60B84C9AC17C06,
@@ -377,6 +382,9 @@ static Il2CppMethodPointer s_methodPointers[334] =
 	MeatballAttachable_AttachToSkewer_m0F59758904107DBAB69E9AE15363BED4472AE938,
 	MeatballAttachable_IsAttachedToSkewer_m5B99AEAEA08E45FDBB956E4F5EF3AF24A421147A,
 	MeatballAttachable__ctor_m48897C160FB6B202A855FEA9CF396472F215E562,
+	Customer_get_CustomerOnScene_m29EBB9FB0DAA63D4B2AF8750EC393AC135324879,
+	Customer_set_CustomerOnScene_m7D9EC334712D8721350697F95BA898C66257EAF6,
+	Customer_Awake_m204325F4CEC9EF62DA01EF932EC88B6587CEC44C,
 	Customer_Start_m1BE1C72CF993A76B1A2811D4CECC8CD51D3DC133,
 	Customer_ArriveAtCounter_mE59594E460D461E95D21C56E9034ACE76CC93047,
 	Customer_GenerateRandomOrder_m1D3196DD8AB837B54A78869B4D3CDD4B60D97B05,
@@ -384,10 +392,12 @@ static Il2CppMethodPointer s_methodPointers[334] =
 	Customer_UpdateOrderUI_mC531A8E592EB385115D364C059DBF07CBCC9FCED,
 	Customer_CheckIfSatisfied_m2AAB15E81B11F3171DD8BE7D8678A7C6365BF84F,
 	Customer_LeaveCounter_m3E4D9C5C88B6C4C8AD9349623069A91762F16B98,
+	Customer_OnReachedDespawn_mE43C4700EBB5DA4EEAB8909B62F8761AEB9ABC6F,
 	Customer__ctor_m7BC9A866BB65665A89BFBA768C11B783E462BD01,
 	CustomerMovement_Start_m999D771474F0568B0A7C9F14FA3B424BBAB81BDD,
 	CustomerMovement_Update_m3049519B6297D030D8A21406534B2965BD9E387D,
 	CustomerMovement_RegisterWithServingZone_m45EC7628001771C24B1128B99BF56CFBE470EBDC,
+	CustomerMovement_OnStartGoingToDespawn_mF7039E7A3981036110C944E61A27D150466E36DC,
 	CustomerMovement_FaceTarget_mA0DEA5E8A05A4A244F79500BF5FCFCB967BE403E,
 	CustomerMovement__ctor_m51C6AA8DDDA7AA22BC58D5AF9B7F91529DA3F553,
 	ItemIdentity_SetItemAsCooked_m940E89797138AE3B57B9CA2597AF1C8FBA497DF4,
@@ -684,12 +694,12 @@ extern void TrackedRotation_SetBaseFromVector_m0CAD68507FD5C7AA3C7CAE09720645F03
 extern void TrackedRotation_SetTargetFromVector_m42F1586C38A41E0FB628220D326B1572BB8F80D7_AdjustorThunk (void);
 static Il2CppTokenAdjustorThunkPair s_adjustorThunks[4] = 
 {
-	{ 0x060000DE, TrackedRotation_get_totalOffset_mC129829FFE6CDD96C8885030BDAEF40D569F06C8_AdjustorThunk },
-	{ 0x060000DF, TrackedRotation_Reset_m54545DE2D01827833956AEC4324C136A0CB72425_AdjustorThunk },
-	{ 0x060000E0, TrackedRotation_SetBaseFromVector_m0CAD68507FD5C7AA3C7CAE09720645F033F1D26E_AdjustorThunk },
-	{ 0x060000E1, TrackedRotation_SetTargetFromVector_m42F1586C38A41E0FB628220D326B1572BB8F80D7_AdjustorThunk },
+	{ 0x060000E3, TrackedRotation_get_totalOffset_mC129829FFE6CDD96C8885030BDAEF40D569F06C8_AdjustorThunk },
+	{ 0x060000E4, TrackedRotation_Reset_m54545DE2D01827833956AEC4324C136A0CB72425_AdjustorThunk },
+	{ 0x060000E5, TrackedRotation_SetBaseFromVector_m0CAD68507FD5C7AA3C7CAE09720645F033F1D26E_AdjustorThunk },
+	{ 0x060000E6, TrackedRotation_SetTargetFromVector_m42F1586C38A41E0FB628220D326B1572BB8F80D7_AdjustorThunk },
 };
-static const int32_t s_InvokerIndices[334] = 
+static const int32_t s_InvokerIndices[339] = 
 {
 	17118,
 	13097,
@@ -725,10 +735,15 @@ static const int32_t s_InvokerIndices[334] =
 	6647,
 	16974,
 	17421,
+	30033,
+	28813,
+	17421,
 	17421,
 	17421,
 	17421,
 	13097,
+	17421,
+	17421,
 	17421,
 	17421,
 	17421,
@@ -1030,7 +1045,7 @@ IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
 const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule = 
 {
 	"Assembly-CSharp.dll",
-	334,
+	339,
 	s_methodPointers,
 	4,
 	s_adjustorThunks,
