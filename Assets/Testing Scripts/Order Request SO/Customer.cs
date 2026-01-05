@@ -29,8 +29,19 @@ public class Customer : MonoBehaviour
     [Header("Animation & Movement")]
     public Animator animator;
 
+    // Optional cached reference to movement controller on the same GameObject.
+    private CustomerMovement movement;
+
+    // Global flag to indicate a customer is active in the scene.
+    public static bool CustomerOnScene { get; private set; }
+
     private NavMeshAgent agent;
     private bool orderComplete = false;
+
+    private void Awake()
+    {
+        CustomerOnScene = true;
+    }
 
     private void Start()
     {
@@ -52,6 +63,8 @@ public class Customer : MonoBehaviour
             Debug.LogError("Customer: despawnPoint is not assigned!", gameObject);
         }
 
+        movement = GetComponent<CustomerMovement>();
+
         agent = GetComponent<NavMeshAgent>();
         if (agent == null)
         {
@@ -64,14 +77,20 @@ public class Customer : MonoBehaviour
             orderUIPanel.SetActive(false);
         }
 
-        animator.SetBool("IsWalking", true);
+        if (animator != null)
+        {
+            animator.SetBool("IsWalking", true);
+        }
     }
 
     // Called when the customer arrives at the counter.
     // Generates a random order and enables the UI.
     public void ArriveAtCounter()
     {
-        animator.SetBool("IsWalking", false);
+        if (animator != null)
+        {
+            animator.SetBool("IsWalking", false);
+        }
         
         if (orderComplete)
         {
@@ -92,7 +111,7 @@ public class Customer : MonoBehaviour
     // Generates a randomized order for the customer.
     private void GenerateRandomOrder()
     {
-        skewersNeeded = Random.Range(2, 4); // Random 2 to 3
+        skewersNeeded = Random.Range(1, 4); // Random 1 to 3
         teaNeeded = Random.Range(1, 3);     // Random 1 to 2
         
         skewersGiven = 0;
@@ -159,7 +178,10 @@ public class Customer : MonoBehaviour
     private void LeaveCounter()
     {
         agent.updateRotation = true;
-        animator.SetBool("IsWalking", true);
+        if (animator != null)
+        {
+            animator.SetBool("IsWalking", true);
+        }
         
         // Disable the order UI panel
         if (orderUIPanel != null)
@@ -172,6 +194,45 @@ public class Customer : MonoBehaviour
         {
             agent.SetDestination(despawnPoint.position);
             Debug.Log("Customer navigating to despawn point.");
+
+            // Tell movement controller that we're heading to despawn so it can
+            // detect when we arrive and restart the cycle.
+            if (movement != null)
+            {
+                movement.OnStartGoingToDespawn();
+            }
+        }
+    }
+
+    /// <summary>
+    /// Called by CustomerMovement when the customer reaches the despawn point.
+    /// Handles resetting state so the customer can start a new order cycle.
+    /// </summary>
+    public void OnReachedDespawn()
+    {
+        Debug.Log("Customer reached despawn point. Resetting for next order cycle.");
+
+        // Stop walking animation briefly at despawn.
+        if (animator != null)
+        {
+            animator.SetBool("IsWalking", false);
+        }
+
+        // Reset order state; a new order will be generated on next ArriveAtCounter.
+        orderComplete = false;
+        skewersNeeded = 0;
+        teaNeeded = 0;
+        skewersGiven = 0;
+        teaGiven = 0;
+
+        UpdateOrderUI();
+
+        // Clear current customer from serving zone so it can accept new items
+        // only when this customer returns to the counter.
+        ServingZone servingZone = FindObjectOfType<ServingZone>();
+        if (servingZone != null)
+        {
+            servingZone.ClearCurrentCustomer();
         }
     }
 }
